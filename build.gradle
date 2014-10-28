@@ -1,0 +1,13 @@
+apply plugin: 'eclipse'
+apply plugin: 'java'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'org.apache.hadoop:hadoop-mapreduce-client:2.5.1'
+	compile 'org.apache.hadoop:hadoop-mapreduce-client-app:2.5.1'
+	compile 'org.apache.hadoop:hadoop-hdfs:2.5.1'
+	compile 'org.apache.hadoop:hadoop-common:2.5.1'
+}
