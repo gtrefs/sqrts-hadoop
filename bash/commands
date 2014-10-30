@@ -1,0 +1,24 @@
+# start up
+sudo hadoop/sart.sh dfs
+sudo hadoop/start.sh yarn
+
+# remove old input/output
+hadoop fs -rm -r /users/gtrefs/wordcount.out
+hadoop fs -rm -r /users/gtrefs/sort.out
+hadoop fs -rm /users/gtrefs/input/lorem
+
+# upload input
+hadoop fs -put ./lorem /users/gtrefs/input/lorem
+
+# Count words in input
+hadoop jar mapred.jar de.gtrefs.hadoop.wordcount.WordCount /users/gtrefs/input/lorem /users/gtrefs/wordcount.out
+# Sort input
+hadoop jar mapred.jar de.gtrefs.hadoop.sort.Sort /users/gtrefs/input/lorem /users/gtrefs/sort.out
+
+# Retrieve result
+hadoop fs -get /users/gtrefs/sort.out ./hadoop/sort.out
+hadoop fs -get /users/gtrefs/wordcount.out ./hadoop/wordcount.out
+
+# stop
+sudo hadoop/sart.sh dfs
+sudo hadoop/start.sh yarn
